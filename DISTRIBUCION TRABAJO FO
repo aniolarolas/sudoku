@@ -1,1 +1,28 @@
-aaa
+Persona A — Mòdul de dades “casella” + lectura d’entrada
+
+Disseny i implementació de t_casilla i funcions associades.
+
+Integració de fichero.* per llegir dimensió, subtamany, i contingut inicial (fix/modificable).
+
+Validacions d’entrada (rang de caràcters segons mida).
+
+Tests d’unitat de lectura i de construcció de caselles.
+Referents: llibreries i fitxers; matrius; validacions de rang.
+
+Persona B — Mòdul “tauler” (matriu i operacions) + impressió
+
+Disseny i implementació de t_tablero (matriu de caselles i metadades).
+
+Funcions d’inicialització, impressió (amb files/columnes i subquadrats), i operacions bàsiques.
+
+Opcional: integrar colores.* per destacar números fixos en negreta/color.
+Referents: matrius en C; llibreria de colors; divisió en llibreries.
+
+Persona C — Lògica de joc + comprovació de final + main
+
+Funcions de validació de moviments i comprovació de final (files, columnes, subquadrats).
+
+Gestió de jugada i flux principal (main.c): arguments, errors, bucle de joc/minidemo segons execució de referència.
+
+Generalització Extra1/Extra2 (mapa caràcter<->valor per 4..36).
+Referents: rúbrica (comprovació final), matrius (recorreguts), README (mides i rangs).
