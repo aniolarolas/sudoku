@@ -11,11 +11,17 @@
 #include "tablero.h"
 #include "colores.h" 
 
-#define SIZE_NOMBRE_FICHERO 7
+#define SIZE_NOMBRE_FICHERO 10
 
 int main(int argc, char *argv[])
 {
     char nombre[SIZE_NOMBRE_FICHERO];
+
+    printf("Intro sudoku file name: ");
+
+    if(argc < 2){
+        printf("Error: falta nombre de fichero.");
+    }
     
     /* (fet) TODO: validar arguments (nom de fitxer), obrir fitxer i comprovar error */
     /* Ex.: if (argc < 2) { printf("Error: falta fitxer\n"); return 1; }       */
