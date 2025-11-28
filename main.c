@@ -1,7 +1,6 @@
 /* 
 **  Fitxer:      main.c
-**  Autor:       (Equip)
-**  Data:        (AAAA-MM-DD)
+**  Data:        27/11/2025
 **  Descripció:  Punt d’entrada del Sudoku. Orquestra lectura, inicialització,
 **               bucle de jugades i comprovació de final segons rúbrica.
 */
@@ -10,11 +9,15 @@
 #include "fichero.h"   /* Llibreria base proporcionada */
 #include "casilla.h"
 #include "tablero.h"
-/* #include "colores.h"   Opcional: si voleu destacar números fixos */
+#include "colores.h"   
 
 int main(int argc, char *argv[])
 {
     /* TODO: validar arguments (nom de fitxer), obrir fitxer i comprovar error */
+    if(argc < 2){
+        printf("Error: falta nombre del fichero");
+    }
+    
     /* Ex.: if (argc < 2) { printf("Error: falta fitxer\n"); return 1; }       */
     /* if (abrir_fichero(argv[1]) == ABRIR_FICHERO_ERR) { ... }                */
 
