@@ -9,15 +9,15 @@
 #include "fichero.h"   /* Llibreria base proporcionada */
 #include "casilla.h"
 #include "tablero.h"
-#include "colores.h"   
+#include "colores.h" 
+
+#define SIZE_NOMBRE_FICHERO 7
 
 int main(int argc, char *argv[])
 {
-    /* TODO: validar arguments (nom de fitxer), obrir fitxer i comprovar error */
-    if(argc < 2){
-        printf("Error: falta nombre del fichero");
-    }
+    char nombre[SIZE_NOMBRE_FICHERO];
     
+    /* (fet) TODO: validar arguments (nom de fitxer), obrir fitxer i comprovar error */
     /* Ex.: if (argc < 2) { printf("Error: falta fitxer\n"); return 1; }       */
     /* if (abrir_fichero(argv[1]) == ABRIR_FICHERO_ERR) { ... }                */
 
