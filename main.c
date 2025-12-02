@@ -26,13 +26,18 @@ int main(void){
     if(fp == NULL){
         printf("Error: El fichero no existe.");
         return 1;
-    }else{
-        /*TODO: función inicializarTablero*/
     }
     
 
     t_tablero t;
+    t.tamany = 0;
+    t.subtamany = 0;
+    t.caselles_buides = 0;
+    t.caselles_totals = 0;
+
     /* TODO: inicialitzar tauler (llegir de fitxer via fichero.*) */
+    
+    
     /* if (inicialitzar_tablero(&t) != 0) { ... } */
 
     /* TODO: imprimir tauler inicial */
