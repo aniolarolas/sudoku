@@ -1,8 +1,7 @@
 
 /* 
 **  Fitxer:      tablero.h
-**  Autor:       (Equip)
-**  Data:        (AAAA-MM-DD)
+**  Data:        2/12/2025
 **  Descripció:  Estructura del tauler i prototips d’operacions de tauler.
 */
 #ifndef TABLERO_H
@@ -12,8 +11,15 @@
 
 #define MAX_F 36
 #define MAX_C 36
+#define TRUE 1
+#define FALSE 0
 
 /* Tipus de dades: tauler amb metadades */
+typedef struct{
+    char car; //0-9 a - z
+    int modificable; //True o FALSE
+}
+
 typedef struct {
     t_casilla c[MAX_F][MAX_C];
     int tamany;            /* 4, 9, 16, 25, 36 */
@@ -22,7 +28,7 @@ typedef struct {
     int caselles_totals;
 } t_tablero;
 
-/* Prototips d’operacions de tauler */
+/*Prototips funcions*/
 int  inicialitzar_tablero(t_tablero *t);
 void imprimir_tablero(t_tablero t);
 void realitzar_jugada(t_tablero *t);
