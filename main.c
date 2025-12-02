@@ -11,21 +11,25 @@
 #include "tablero.h"
 #include "colores.h" 
 
-#define SIZE_NOMBRE_FICHERO 10
+#define SIZE_NOMBRE_FICHERO 64
+#define TRUE 1
+#define FALSE 0
 
-int main(int argc, char *argv[])
-{
-    char nombre[SIZE_NOMBRE_FICHERO];
-
+int main(void){
+    char nom_fichero[SIZE_NOMBRE_FICHERO];
+    FILE *fp;
+    
     printf("Intro sudoku file name: ");
+    scanf("%63s", nom_fichero);
+    fp = fopen(nom_fichero, "r");
 
-    if(argc < 2){
-        printf("Error: falta nombre de fichero.");
+    if(fp == NULL){
+        printf("Error: El fichero no existe.");
+        return 1;
+    }else{
+        /*TODO: función inicializarTablero*/
     }
     
-    /* (fet) TODO: validar arguments (nom de fitxer), obrir fitxer i comprovar error */
-    /* Ex.: if (argc < 2) { printf("Error: falta fitxer\n"); return 1; }       */
-    /* if (abrir_fichero(argv[1]) == ABRIR_FICHERO_ERR) { ... }                */
 
     t_tablero t;
     /* TODO: inicialitzar tauler (llegir de fitxer via fichero.*) */
@@ -41,6 +45,8 @@ int main(int argc, char *argv[])
     /* TODO: tancar fitxer abans d’acabar */
     /* cerrar_fichero(); */
 
+    fclose(fp);
+    
     return 0;
 }
 
