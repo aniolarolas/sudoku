@@ -1,13 +1,12 @@
 /* 
 **  Fitxer:      tablero.c
-**  Autor:       (Equip)
-**  Data:        (AAAA-MM-DD)
+**  Data:        2/12/2025
 **  Descripció:  Implementació d’operacions sobre el tauler.
 */
 
 #include <stdio.h>
 #include "tablero.h"
-#include "fichero.h"   /* per llegir ints/chars del fitxer proporcionat */
+#include "fichero.h"   
 
 /* TODO: llegir N i subN del fitxer, omplir matriu de caselles i comptadors */
 int inicialitzar_tablero(t_tablero *t)
