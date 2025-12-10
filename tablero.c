@@ -20,10 +20,16 @@ int inicialitzar_tablero(t_tablero *t)
     return 0;
 }
 
-/* TODO: imprimir capçaleres files/columnes i separadors de subquadrats */
+/* (FET)TODO: imprimir capçaleres files/columnes i separadors de subquadrats */
 void imprimir_tablero(t_tablero t)
 {
-    /* TODO: recorregut per files/columnes i crida a imprimir_casilla */
+    int i, j;
+    for (i = 0; i < t.tamany; i = i + 1) {
+        for (j = 0; j < t.tamany; j = j + 1) {
+            printf("%c ", t.c[i][j].car);
+        }
+        printf("\n");
+    }
 }
 
 /* TODO: validar rang, comprovar modificable i aplicar canvi */
