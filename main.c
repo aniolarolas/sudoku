@@ -28,12 +28,42 @@ int main(void){
         return 1;
     }
     
-
+    
     t_tablero t;
     t.tamany = 0;
     t.subtamany = 0;
     t.caselles_buides = 0;
     t.caselles_totals = 0;
+
+    {
+        int i, j;
+
+        /* Capçalera: tamany i subtamany */
+        if (fscanf(fp, "%d %d", &t.tamany, &t.subtamany) != 2) {
+            printf("Error: formato de cabecera invalido\n");
+            fclose(fp);
+            return 1;
+        }
+
+        /* Matriu: N×N caràcters (separats per espais o salts de línia) */
+        for (i = 0; i < t.tamany; i = i + 1) {
+            for (j = 0; j < t.tamany; j = j + 1) {
+                char ch;
+                if (fscanf(fp, " %c", &ch) != 1) {  /* l'espai salta blancs */
+                    printf("Error: formato de datos invalido\n");
+                    fclose(fp);
+                    return 1;
+                }
+                t.c[i][j].car = ch;
+                t.c[i][j].modificable = 1;  /* S2: placeholder; es refinarà a S3 */
+            }
+        }
+
+        t.caselles_totals = t.tamany * t.tamany;
+        t.caselles_buides = 0;
+
+        imprimir_tablero(t);
+    }
 
     /* TODO: inicialitzar tauler (llegir de fitxer via fichero.*) */
     
