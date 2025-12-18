@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "fichero.h"   /* Llibreria base proporcionada */
+#include "fichero.h"   
 #include "casilla.h"
 #include "tablero.h"
 #include "colores.h" 
@@ -17,71 +17,36 @@
 
 int main(void){
     char nom_fichero[SIZE_NOMBRE_FICHERO];
-    FILE *fp;
-    
-    printf("Intro sudoku file name: ");
-    scanf("%63s", nom_fichero);
-    fp = fopen(nom_fichero, "r");
+    t_tablero t;
 
-    if(fp == NULL){
-        printf("Error: El fichero no existe.");
+    printf("Intro sudoku file name: ");
+    scanf("%79s%*c", nom_fichero);
+
+    /* 1) Obrir fitxer amb la llibreria donada */
+    if (abrir_fichero(nom_fichero) != ABRIR_FICHERO_OK) {
+        printf("Error: El fichero no existe.\n");
         return 1;
     }
-    
-    
-    t_tablero t;
-    t.tamany = 0;
-    t.subtamany = 0;
-    t.caselles_buides = 0;
-    t.caselles_totals = 0;
 
-    {
-        int i, j;
+    /* 2) Inicialitzar tauler des del fitxer */
+    if (inicialitzar_tablero(&t) != 0) {
+        printf("Error: formato de fichero invalido\n");
+        cerrar_fichero();
+        return 1;
+    }
 
-        /* Capçalera: tamany i subtamany */
-        if (fscanf(fp, "%d %d", &t.tamany, &t.subtamany) != 2) {
-            printf("Error: formato de cabecera invalido\n");
-            fclose(fp);
-            return 1;
-        }
+    /* 3) Mostrar tauler inicial */
+    imprimir_tablero(t);
 
-        /* Matriu: N×N caràcters (separats per espais o salts de línia) */
-        for (i = 0; i < t.tamany; i = i + 1) {
-            for (j = 0; j < t.tamany; j = j + 1) {
-                char ch;
-                if (fscanf(fp, " %c", &ch) != 1) {  /* l'espai salta blancs */
-                    printf("Error: formato de datos invalido\n");
-                    fclose(fp);
-                    return 1;
-                }
-                t.c[i][j].car = ch;
-                t.c[i][j].modificable = 1;  /* S2: placeholder; es refinarà a S3 */
-            }
-        }
-
-        t.caselles_totals = t.tamany * t.tamany;
-        t.caselles_buides = 0;
-
+    /* 4) Bucle de joc: jugades fins que estigui finalitzat */
+    while (sudoku_finalitzat(t) == 0) {
+        realitzar_jugada(&t);
         imprimir_tablero(t);
     }
 
-    /* TODO: inicialitzar tauler (llegir de fitxer via fichero.*) */
-    
-    
-    /* if (inicialitzar_tablero(&t) != 0) { ... } */
+    /* 5) Final */
+    printf("SUDOKU FINALIZADO!\n");
+    cerrar_fichero();
 
-    /* TODO: imprimir tauler inicial */
-    /* imprimir_tablero(t); */
-
-    /* TODO: bucle de joc o seqüència de jugades; cridar realitzar_jugada(&t) */
-
-    /* TODO: comprovar final: if (sudoku_finalitzat(t)) ... */
-
-    /* TODO: tancar fitxer abans d’acabar */
-    /* cerrar_fichero(); */
-
-    fclose(fp);
-    
     return 0;
 }
-

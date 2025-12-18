@@ -1,4 +1,3 @@
-
 /* 
 **  Fitxer:      tablero.h
 **  Data:        2/12/2025
@@ -15,11 +14,6 @@
 #define FALSE 0
 
 /* Tipus de dades: tauler amb metadades */
-typedef struct{
-    char car; //0-9 a - z
-    int modificable; //True o FALSE
-}
-
 typedef struct {
     t_casilla c[MAX_F][MAX_C];
     int tamany;            /* 4, 9, 16, 25, 36 */

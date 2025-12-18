@@ -4,23 +4,21 @@
 
 // #define DEBUG
 
-FILE *set_or_get_fichero(FILE *f) {
-	static FILE *fichero = NULL;
+static FILE *set_or_get_fichero(FILE *f) {
+    static FILE *fichero = NULL;
 
-	if (f != NULL) {
-		// set
-		fichero = f;
-	}
-	// get
-	return fichero;
+    if (f != NULL) {
+        fichero = f;
+    }
+    return fichero;
 }
 
 int abrir_fichero(char nombre_fichero[]) {
-	set_or_get_fichero(fopen(nombre_fichero, "r"));
-	if (set_or_get_fichero(NULL) == NULL) {
-		return ABRIR_FICHERO_ERR;
-	}
-	return ABRIR_FICHERO_OK;
+    set_or_get_fichero(fopen(nombre_fichero, "r"));
+    if (set_or_get_fichero(NULL) == NULL) {
+        return ABRIR_FICHERO_ERR;
+    }
+    return ABRIR_FICHERO_OK;
 }
 
 int leer_int_fichero() {

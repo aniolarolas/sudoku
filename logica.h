@@ -3,7 +3,11 @@
 
 #include "tablero.h"
 
-/* Conversión carácter <-> valor interno (0..tam-1) */
+/* Conversión carácter <-> valor interno.
+ * - Vacío '.' (o '-') => 0
+ * - Símbolo válido => 1..tam
+ * - Inválido => -1
+ */
 int char_a_valor(char c, int tam);
 char valor_a_char(int v, int tam);
 
@@ -24,4 +28,3 @@ void aplicar_movimiento(t_tablero *t, int fila, int col, int valor);
 int sudoku_finalizado(const t_tablero *t);
 
 #endif
-
