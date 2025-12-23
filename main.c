@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "fichero.h"   
 #include "casilla.h"
 #include "tablero.h"
@@ -14,13 +15,6 @@
 #define SIZE_NOMBRE_FICHERO 64
 #define TRUE 1
 #define FALSE 0
-
-int main(void){
-    
-    #include <stdio.h>
-#include "casilla.h"
-#include "fichero.h"
-
 #define MAX_N 36
 
 int main(void)
