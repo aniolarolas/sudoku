@@ -17,51 +17,31 @@
 
 int main(void){
     
+    #include <stdio.h>
+#include "casilla.h"
+#include "fichero.h"
+
+#define MAX_N 36
+
+int main(void)
+{
     int N, subN;
     int i, j;
     char car;
-    t_casilla **tablero;
 
-    /* Comprobación de argumentos */
-    if (argc != 2) {
-        printf("Uso: %s <fichero_entrada>\n", argv[0]);
-        return 1;
-    }
+    t_casilla tablero[MAX_N][MAX_N];
 
-    /* Abrir fichero */
-    if (abrir_fichero(argv[1]) != ABRIR_FICHERO_OK) {
-        printf("Error: no se ha podido abrir el fichero\n");
-        return 1;
-    }
-
+    /* Se asume que el fichero ya está abierto */
     /* Leer tamaño y sub-tamaño */
     N = leer_int_fichero();
     subN = leer_int_fichero();
 
-    if (N <= 0 || subN <= 0 || subN * subN != N) {
+    if (N <= 0 || N > MAX_N || subN <= 0 || subN * subN != N) {
         printf("Error: dimensiones incorrectas\n");
-        cerrar_fichero();
         return 1;
     }
 
-    /* Reserva del tablero de casillas */
-    tablero = (t_casilla **)malloc(N * sizeof(t_casilla *));
-    if (tablero == NULL) {
-        printf("Error de memoria\n");
-        cerrar_fichero();
-        return 1;
-    }
-
-    for (i = 0; i < N; i++) {
-        tablero[i] = (t_casilla *)malloc(N * sizeof(t_casilla));
-        if (tablero[i] == NULL) {
-            printf("Error de memoria\n");
-            cerrar_fichero();
-            return 1;
-        }
-    }
-
-    /* Lectura del contenido e inicialización de casillas */
+    /* Inicialización de casillas */
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++) {
 
@@ -76,18 +56,14 @@ int main(void){
             /* Control de fin de fichero */
             if (car == EOF) {
                 printf("Error: fin de fichero inesperado\n");
-                cerrar_fichero();
                 return 1;
             }
 
-            /* Inicializar casilla */
             inicialitzar_casilla(car, &tablero[i][j]);
         }
     }
 
-    cerrar_fichero();
-
-    /* Impresión del tablero (prueba) */
+    /* Mostrar tablero (prueba) */
     printf("\nTablero leído:\n");
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++) {
@@ -97,14 +73,8 @@ int main(void){
         printf("\n");
     }
 
-    /* Ejemplo de cambio de casilla */
+    /* Ejemplo de uso de canviar_casilla */
     canviar_casilla(&tablero[0][0], '5');
-
-    /* Liberar memoria */
-    for (i = 0; i < N; i++) {
-        free(tablero[i]);
-    }
-    free(tablero);
     
     
     char nom_fichero[SIZE_NOMBRE_FICHERO];
