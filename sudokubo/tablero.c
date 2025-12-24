@@ -34,7 +34,7 @@ int llegir_casella(char *out)
     if (es_fin_de_fichero()) return 0;
     ch = leer_char_fichero();
 
-    while (!es_fin_de_fichero() && (ch == '\n' || ch == '\r')) {
+    while (!es_fin_de_fichero() && (ch == '\n' || ch == '\r' || ch == ' ' || ch == '\t')) {
         ch = leer_char_fichero();
     }
 
@@ -43,7 +43,6 @@ int llegir_casella(char *out)
     *out = ch;
     return 1;
 }
-
 int inicialitzar_tablero(t_tablero *t)
 {
     int i, j;
