@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include "fichero.h"
 #include "tablero.h"
+#include "logica.h"
+#include "colores.h"
+#include "casilla.h"
 
 #define SIZE_NOMBRE_FICHERO 64
 
