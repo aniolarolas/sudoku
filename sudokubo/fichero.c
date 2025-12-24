@@ -1,53 +1,54 @@
+// Este fichero se le da al alumno
 #include <stdio.h>
 #include "fichero.h"
 
-FILE *fichero_global = NULL;
+// #define DEBUG
 
-int abrir_fichero(char nombre_fichero[])
-{
-    fichero_global = fopen(nombre_fichero, "r");
-    if (fichero_global == NULL) {
-        return ABRIR_FICHERO_ERR;
-    }
-    return ABRIR_FICHERO_OK;
+FILE *set_or_get_fichero(FILE *f) {
+	static FILE *fichero = NULL;
+
+	if (f != NULL) {
+		// set
+		fichero = f;
+	}
+	// get
+	return fichero;
 }
 
-int leer_int_fichero()
-{
-    int num;
-    FILE *f = fichero_global;
-
-    if (f == NULL) return -1;
-
-    num = 0;
-    if (fscanf(f, "%d", &num) != 1) {
-        return 0;
-    }
-    return num;
+int abrir_fichero(char nombre_fichero[]) {
+	set_or_get_fichero(fopen(nombre_fichero, "r"));
+	if (set_or_get_fichero(NULL) == NULL) {
+		return ABRIR_FICHERO_ERR;
+	}
+	return ABRIR_FICHERO_OK;
 }
 
-char leer_char_fichero()
-{
-    FILE *f = fichero_global;
-    int ch;
+int leer_int_fichero() {
+	int num, ret_fscanf;
 
-    if (f == NULL) return (char)-1;
-
-    ch = fgetc(f);
-    return (char)ch;
+	ret_fscanf = fscanf(set_or_get_fichero(NULL), "%d", &num);
+	if (ret_fscanf == EOF) {
+		return -1;
+	}
+	return num;
 }
 
-int es_fin_de_fichero()
-{
-    FILE *f = fichero_global;
-    if (f == NULL) return 1;
-    return feof(f);
+char leer_char_fichero() {
+	int ret_fscanf;
+	char car;
+
+	ret_fscanf = fscanf(set_or_get_fichero(NULL), "%c", &car);
+	if (ret_fscanf == EOF) {
+		return -1;
+	}
+	return car;
 }
 
-void cerrar_fichero()
-{
-    FILE *f = fichero_global;
-    if (f != NULL) fclose(f);
-    fichero_global = NULL;
+int es_fin_de_fichero() {
+	return feof(set_or_get_fichero(NULL));
+}
+
+void cerrar_fichero() {
+	fclose(set_or_get_fichero(NULL));
 }
 
