@@ -109,6 +109,7 @@ char indice_a_char(int idx)
 
 int char_a_indice(char ch)
 {
+    ch = a_majuscula(ch);
     if (ch >= '0' && ch <= '9') return (int)(ch - '0');
     if (ch >= 'A' && ch <= 'Z') return 10 + (int)(ch - 'A');
     return -1;
@@ -218,5 +219,3 @@ int sudoku_finalitzat(t_tablero t)
 {
     return sudoku_finalizado(&t);
 }
-
-
