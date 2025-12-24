@@ -4,8 +4,8 @@
 
 // #define DEBUG
 
-static FILE *set_or_get_fichero(FILE *f) {
-    static FILE *fichero = NULL;
+FILE *set_or_get_fichero(FILE *f) {
+   FILE *fichero = NULL;
 
     if (f != NULL) {
         fichero = f;
